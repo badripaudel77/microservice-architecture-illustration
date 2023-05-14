@@ -1,0 +1,11 @@
+server:
+  port: 9000
+
+# configure name of the service
+spring:
+  application:
+    name: EVENT-SERVICE
+
+eureka:
+  instance:
+    hostname: localhost

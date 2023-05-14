@@ -1,0 +1,24 @@
+server:
+  port: 8999
+
+# configure name of the service
+spring:
+  application:
+    name: MICROSERVICE-API-GATEWAY
+
+# configuring entry point to the application routing.
+  cloud:
+    gateway:
+      routes:
+        - id: EVENT-SERVICE
+          uri: lb://EVENT-SERVICE
+          predicates:
+            - Path=/api/v1/events/**
+        - id: PARTICIPANT-SERVICE
+          uri: lb://PARTICIPANT-SERVICE
+          predicates:
+            - Path=/api/v1/participants/**
+eureka:
+  instance:
+    hostname: localhost
+

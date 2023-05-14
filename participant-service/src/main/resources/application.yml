@@ -1,0 +1,11 @@
+server:
+  port: 9001
+
+# configure name of the service
+spring:
+  application:
+    name: PARTICIPANT-SERVICE
+
+eureka:
+  instance:
+    hostname: localhost
