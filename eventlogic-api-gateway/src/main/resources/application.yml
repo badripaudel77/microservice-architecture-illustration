@@ -18,6 +18,12 @@ spring:
           uri: lb://PARTICIPANT-SERVICE
           predicates:
             - Path=/api/v1/participants/**
+
+        # logger service node and express js app
+        - id: LOGGER-SERVICE
+          uri: lb://LOGGER-SERVICE
+          predicates:
+            - Path=/api/v1/logger/**
 eureka:
   instance:
     hostname: localhost

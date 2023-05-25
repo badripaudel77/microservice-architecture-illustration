@@ -5,4 +5,3 @@ eureka:
   client:
     register-with-eureka: false # Don't register yourself
     fetch-registry: false # Specifies whether the client should fetch the registry information from the Eureka server.
-#    waitTimeInMsWhenSyncEmpty : 0
