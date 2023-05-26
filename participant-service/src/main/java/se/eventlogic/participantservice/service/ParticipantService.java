@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface ParticipantService {
 
-     List<Participant> getAllParticipantsForEvent(Integer eventId);
+     List<Participant> getAllParticipantsForEvent(Integer eventId) throws InterruptedException;
 }

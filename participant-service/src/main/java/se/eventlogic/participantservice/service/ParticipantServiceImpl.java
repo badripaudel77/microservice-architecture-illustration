@@ -22,7 +22,11 @@ public class ParticipantServiceImpl implements ParticipantService {
     );
 
     @Override
-    public List<Participant> getAllParticipantsForEvent(Integer eventId) {
+    public List<Participant> getAllParticipantsForEvent(Integer eventId) throws InterruptedException {
+        System.out.println("Going to Sleep 3s   " + System.currentTimeMillis());
+        Thread.sleep(3000);
+        System.out.println("Going to resume  " + System.currentTimeMillis());
+
         Stream<Participant> participantStream = participants.stream().filter(participant -> Objects.equals(participant.getEventId(), eventId));
         return participantStream.toList();
     }

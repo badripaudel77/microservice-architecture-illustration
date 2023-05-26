@@ -21,7 +21,7 @@ public class ParticipantResource {
     }
 
     @GetMapping("/{eventId}")
-    public List<Participant> getAllParticipantsForEvent(@PathVariable("eventId") Integer eventId) {
+    public List<Participant> getAllParticipantsForEvent(@PathVariable("eventId") Integer eventId) throws InterruptedException {
         return participantService.getAllParticipantsForEvent(eventId);
     }
 }
