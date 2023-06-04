@@ -6,7 +6,9 @@ import io.github.resilience4j.retry.annotation.Retry;
 import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import se.eventlogic.eventservice.entities.Event;
 import se.eventlogic.eventservice.entities.Participant;
 import se.eventlogic.eventservice.service.EventService;
@@ -21,6 +23,9 @@ public class EventResource {
 
     private EventService eventService;
     private Logger logger = LoggerFactory.getLogger(EventResource.class);
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     /**
      * @param eventId
@@ -40,8 +45,7 @@ public class EventResource {
     @GetMapping("{eventId}")
     public Event getEventDetails(@PathVariable("eventId") Integer eventId) {
         Event event =  eventService.getEventDetails(eventId);
-        // make request to another microservice to get the participant list for this event with id
-        logger.info("----------- Requesting to participant service.");
+        String logMessage = restTemplate.getForObject("http://LOGGER-SERVICE/api/v1/logger/log/" + eventId, String.class);
         List<Participant> participants = eventService.listParticipantsForEvent(eventId);
         event.setEventParticipants(participants);
         return event;
